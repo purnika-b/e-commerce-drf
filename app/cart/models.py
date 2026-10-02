@@ -8,3 +8,13 @@ class CartItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity=models.IntegerField()
+
+    class Meta:
+      constraints=[
+        models.UniqueConstraint(
+            fields=["user","product"],
+            name="unique_user_product"
+
+
+        )
+    ]
