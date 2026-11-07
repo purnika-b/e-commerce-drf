@@ -33,10 +33,10 @@ def cart_create(request):
     return Response({"message":"Product is already in your cart."}, status=status.HTTP_400_BAD_REQUEST)
  return Response(serializer.data,status=status.HTTP_201_CREATED)
 
-@extend_schema("Update the existing cart", tags=["Cart"])
+@extend_schema("Update the existing cart",request=CartItemSerializer,tags=["Cart"] )
 @api_view(["PATCH"])
 @permission_classes([IsAuthenticated])
-def cart_update(id,request):
+def cart_update(request,id):
   cart_item= get_object_or_404(CartItem,user=request.user,id=id)
   serializer=CartItemSerializer(cart_item,data=request.data)
   if serializer.is_valid():

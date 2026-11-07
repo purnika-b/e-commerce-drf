@@ -11,16 +11,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+load_dotenv(BASE_DIR /".env")
+KHALTI_SECRET_KEY = os.getenv("KHALTI_SECRET_KEY")
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-m=6-n(f1og!^(b9^_y+!x!h#gfwg3)hwno98abo7qd&h1b#q1#'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +47,8 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "app.products",
     "app.cart",
+    "app.orders",
+    "app.payments"
 ]   
 AUTH_USER_MODEL='accounts.User'
 REST_FRAMEWORK = {

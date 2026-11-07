@@ -24,8 +24,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/accounts/',include("app.accounts.api.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
-path("swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
-   path('api/products/',include("app.products.api.urls")),
-   path('api/cart/',include("app.cart.api.urls")),
+    path("swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path('api/products/',include("app.products.api.urls")),
+    path('api/cart/',include("app.cart.api.urls")),
+    path('api/orders/',include("app.orders.api.urls")),
+    path('api/payments/',include("app.payments.api.urls")),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
